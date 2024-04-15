@@ -195,7 +195,7 @@
             odejmowanie=(((nowa_h*60)+nowa_m)*60)+nowa_s;
             mnoznik=mnoznik/10
             document.getElementById("main").style.display="block";
-            document.getElementById("main").innerHTML="Wygrałeś<br>"+(mnoznik*(punkty-(odejmowanie/2)))+" punktów"
+            document.getElementById("main").innerHTML="Wygrałeś<br>"+(mnoznik*(punkty-(odejmowanie/2))).toFixed(1)+" punktów"
         }
         function start()
         {
