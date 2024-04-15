@@ -38,6 +38,8 @@
             display: flex;
             flex-wrap: wrap;
             display: none;
+            text-align: center;
+            font-size: 100px;
         }
         nav{
             position: absolute;
@@ -47,14 +49,6 @@
             left: 0px;
             text-align: center;
             font-size: 50px;
-        }
-        img{
-            transition: 0.4s;
-            opacity: 1;
-        }
-        div:hover img{
-            opacity: 0;
-            scale: 0.6;
         }
         section{
             margin: auto;
@@ -109,6 +103,9 @@
             main {
                 margin-top: 60px;
                 width: 100%;
+                font-size: 80px;
+                word-wrap: break-word;
+                font-weight: bold;
             }
             img{
                 opacity: 0.5;
@@ -168,21 +165,26 @@
         let tryb=0;
         let sprawdzanie=[];
         let pytanie=[
-        'Przyjebka o nic<img src="1.png" alt="">',
-        'Spóźnienie<img src="2.png" alt="">',
-        'Wysłanie do pedagoga<img src="3.png" alt="">',
-        'Grożenie uwagą<img src="4.png" alt="">',
-        'Przypierdolka o plecaki<img src="5.png" alt="">',
-        'Korzystanie z telefonu<img src="6.png" alt="">',
-        'Uspokajanie komborniaków<img src="7.png" alt="">',
-        'Porównywanie do zwierząt<img src="8.png" alt="">',
-        'Jebnięcie o stół<img src="9.png" alt="">',
-        'Nieadekwatny strój<img src="10.png" alt="">',
-        'Coś nie działą guzkowi<img src="11.png" alt="">',
-        'Zakole<img src="12.png" alt="">',
-        'Wpisanie uwagi<img src="13.png" alt="">',
-        'Bezsensowny kod<img src="14.png" alt="">',
+        'Przyjebka o nic',
+        'Spóźnienie',
+        'Wysłanie do pedagoga',
+        'Grożenie uwagą',
+        'Przypierdolka o plecaki',
+        'Korzystanie z telefonu',
+        'Uspokajanie komborniaków',
+        'Porównywanie do zwierząt',
+        'Jebnięcie o stół',
+        'Nieadekwatny strój',
+        'Coś nie działą guzkowi',
+        'Zakole',
+        'Wpisanie uwagi',
+        'Bezsensowny kod',
         ]
+        function wygrana()
+        {
+            document.getElementById("main").style.display="block";
+            document.getElementById("main").innerHTML="<span>Wygrałeś<span>"
+        }
         function start()
         {
             for(let i=0;i<9;i++)
@@ -218,6 +220,18 @@
                 {
                     gra=false
                 }
+                if(tablica.includes(1)&&tablica.includes(4)&&tablica.includes(7))
+                {
+                    gra=false
+                }
+                if(tablica.includes(2)&&tablica.includes(5)&&tablica.includes(8))
+                {
+                    gra=false
+                }
+                if(tablica.includes(3)&&tablica.includes(6)&&tablica.includes(9))
+                {
+                    gra=false
+                }
                 if(tablica.includes(1)&&tablica.includes(5)&&tablica.includes(9))
                 {
                     gra=false
@@ -233,6 +247,7 @@
                     gra=false
                 }
             }
+            if(!gra)wygrana()
         }
         function timer()
         {
@@ -246,9 +261,11 @@
             else m=0;
             if(nowa_h>=h) nowa_h = nowa_h - h;
             else h=0;
+            if(!gra) nowa_s=nowa_s-1
             if (nowa_s < 10) nowa_s = "0" + nowa_s;
             if (nowa_m < 10) nowa_m = "0" + nowa_m;
             if (nowa_h < 10) nowa_h = "0" + nowa_h;
+            
             document.getElementById("timer").innerHTML=nowa_h+":"+nowa_m+":"+nowa_s;
 
             if (gra) {const myTimeout = setTimeout(() => timer(), 1000);}
