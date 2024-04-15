@@ -7,6 +7,7 @@
     <style>
         body{
             background-color: rgb(172, 165, 165);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
         div{
             border: 5px solid green;
@@ -87,18 +88,22 @@
         @media screen and (max-width: 600px) {
             /* Dostosowanie dla urządzeń o szerokości maksymalnej 600px */
             div {
-                width: 27svw;
-                height: 27svw;
-                font-size: 20px;
-                color: black;
+                width: 25svw;
+                height: 25svw;
+                font-size: 22px;
+                word-wrap: break-word;
+                font-weight: bold;
+                color: red;
                 
             }
             img{
                 display: none;
             }
-
             div:hover {
-                font-size: 20px;
+                font-size: 22px;
+                scale: 1;
+                font-weight: bold;
+                color: red;
             }
 
             main {
@@ -161,6 +166,7 @@
         let gra=true
         let tablica =[]
         let tryb=0;
+        let sprawdzanie=[];
         let pytanie=[
         'Przyjebka o nic<img src="1.png" alt="">',
         'Spóźnienie<img src="2.png" alt="">',
@@ -181,10 +187,14 @@
         {
             for(let i=0;i<9;i++)
             {
-                let temp =Math.floor(Math.random() * pytanie.length);
-                document.getElementById(i+1).innerHTML= pytanie[temp]
-                document.getElementById(i+1).style= 'backgraun'
-                pytanie.splice(temp,1)
+                let temp;
+                do {
+                    temp = Math.floor(Math.random() * pytanie.length);
+                } while (sprawdzanie.includes(temp));
+                document.getElementById(i + 1).innerHTML = pytanie[temp];
+                document.getElementById(i + 1).style.backgroundImage = 'url(' + (temp+1) + '.png)';
+                sprawdzanie.push(temp);
+                //pytanie.splice(temp,1)
             }
         }
         function zaznaczenie(x)
