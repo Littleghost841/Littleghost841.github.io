@@ -16,7 +16,7 @@
             width: 230px;
             height: 230px;
             transition: 0.5s;
-            color: black;
+            color: rgb(0, 255, 106);
             font-size: 0px;
             text-align: center;
             border-radius: 15px;
@@ -28,7 +28,7 @@
             scale: 1.1;
             cursor: pointer;
             border: red 5px solid;
-            color: black;
+            color: rgb(0, 255, 106);
             background-color: rgb(124, 1, 1);
         }
         main{
@@ -160,10 +160,20 @@
         let s
         let m
         let h
+        
+        let nowa_data 
+        let nowa_s 
+        let nowa_m 
+        let nowa_h
+        
+        let mnoznik=10;
+        let punkty=3000
+        let odejmowanie;
         let gra=true
         let tablica =[]
         let tryb=0;
         let sprawdzanie=[];
+        let stan=[0,0,0,0,0,0,0,0,0]
         let pytanie=[
         'Przyjebka o nic',
         'Spóźnienie',
@@ -175,15 +185,17 @@
         'Porównywanie do zwierząt',
         'Jebnięcie o stół',
         'Nieadekwatny strój',
-        'Coś nie działą guzkowi',
+        'Coś nie działa guzkowi',
         'Zakole',
         'Wpisanie uwagi',
         'Bezsensowny kod',
         ]
         function wygrana()
         {
+            odejmowanie=(((nowa_h*60)+nowa_m)*60)+nowa_s;
+            mnoznik=mnoznik/10
             document.getElementById("main").style.display="block";
-            document.getElementById("main").innerHTML="<span>Wygrałeś<span>"
+            document.getElementById("main").innerHTML="Wygrałeś<br>"+(mnoznik*(punkty-(odejmowanie/2)))+" punktów"
         }
         function start()
         {
@@ -205,7 +217,9 @@
             document.getElementById(x).style.backgroundColor ="red"
             document.getElementById(x).style.scale ="0.9"
             tablica.push(x)
-            console.log(tablica)
+
+            if(stan[x-1]==0) mnoznik=mnoznik+2
+
             if(tryb==1)
             {
                 if(tablica.includes(1)&&tablica.includes(2)&&tablica.includes(3))
@@ -251,10 +265,10 @@
         }
         function timer()
         {
-            let nowa_data = new Date();
-            let nowa_s = nowa_data.getSeconds();
-            let nowa_m = nowa_data.getMinutes();
-            let nowa_h = nowa_data.getHours();
+            nowa_data = new Date();
+            nowa_s = nowa_data.getSeconds();
+            nowa_m = nowa_data.getMinutes();
+            nowa_h = nowa_data.getHours();
             if(nowa_s>=s) nowa_s = nowa_s - s;
             else s=0;
             if(nowa_m>=m)   nowa_m = nowa_m - m;
