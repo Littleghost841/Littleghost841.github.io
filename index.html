@@ -62,32 +62,33 @@
             font-size: 28px;
             font-weight: bold;
             background-color: brown;
-            padding: 10px;
             border: 5px solid;
             border-radius: 15px;
+            padding: 20px;
         }
         button{
             width: 150px;
             height: 60px;
-            margin: 10px;
             font-size: 20px;
             font-weight: bold;
             transition: 1s;
             border: 5px solid;
             background-color: rgb(145, 32, 75);
             border-radius: 15px;
+            margin: 15px 0px;
         }
         button:hover{
             background-color: rgb(243, 0, 93);
             cursor: pointer;
             scale: 1.1;
         }
+        
         @media screen and (max-width: 600px) {
             /* Dostosowanie dla urządzeń o szerokości maksymalnej 600px */
             div {
-                width: 150px;
-                height: 150px;
-                font-size: 30px;
+                width: 140px;
+                height: 140px;
+                font-size: 20px;
                 color: black;
             }
             img{
@@ -99,6 +100,7 @@
             }
 
             main {
+                margin-top: 60px;
                 width: 100%;
             }
             img{
@@ -106,12 +108,16 @@
             }
 
             nav {
+                width: 100%;
+                text-align: center;
                 font-size: 30px;
+                display: none;
             }
 
             section {
-                width: 120px;
-                font-size: 16px;
+
+                width: 130px;
+                font-size: 20px;
             }
 
             button {
@@ -124,13 +130,12 @@
     </style>
 </head>
 <body>
-    <nav id="timer">
-    </nav>
     <section id="but">
         Wybierz Tryb
-        <button onclick="zmiana_trybu(1)">3 w rzędzieawfw</button>
+        <button onclick="zmiana_trybu(1)">3 w rzędzie</button>
         <button onclick="zmiana_trybu(2)">Wszystkie</button>
     </section>
+    <nav id="timer"></nav>
     <main id="main">
         <div id="1" onclick="zaznaczenie(1)"></div>
         <div id="2" onclick="zaznaczenie(2)"></div>
@@ -179,7 +184,6 @@
                 pytanie.splice(temp,1)
             }
         }
-        start()
         function zaznaczenie(x)
         {
             document.getElementById(x).style.border ="5px solid red"
@@ -242,12 +246,14 @@
             {
                 tryb=x
                 document.getElementById("main").style.display="flex";
+                document.getElementById("timer").style.display="block";
                 document.getElementById("but").style.display="none";
                 data = new Date()
                 s=data.getSeconds()
                 m=data.getMinutes()
                 h=data.getHours()
                 timer()
+                start()
             }
     </script>
 </html>
