@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(172, 165, 165);
+        }
+        div{
+            border: 5px solid green;
+            background-color: green;
+            margin: 5px;
+            width: 230px;
+            height: 230px;
+            transition: 0.5s;
+            color: black;
+            font-size: 0px;
+            text-align: center;
+            border-radius: 15px;
+        }
+        div:hover{
+            word-wrap: break-word;
+            font-weight: bold;
+            font-size: 35px;
+            scale: 1.1;
+            cursor: pointer;
+            border: red 5px solid;
+            color: black;
+            background-color: rgb(124, 1, 1);
+        }
+        main{
+            margin: auto;
+            width: 900px;
+            height: 690px;
+            display: flex;
+            flex-wrap: wrap;
+            display: none;
+        }
+        nav{
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            font-size: 50px;
+        }
+        img{
+            transition: 0.4s;
+            opacity: 1;
+        }
+        div:hover img{
+            opacity: 0;
+            scale: 0.6;
+        }
+        section{
+            margin: auto;
+            text-align: center;
+            width: 170px;
+            font-size: 28px;
+            font-weight: bold;
+            background-color: brown;
+            padding: 10px;
+            border: 5px solid;
+            border-radius: 15px;
+        }
+        button{
+            width: 150px;
+            height: 60px;
+            margin: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: 1s;
+            border: 5px solid;
+            background-color: rgb(145, 32, 75);
+            border-radius: 15px;
+        }
+        button:hover{
+            background-color: rgb(243, 0, 93);
+            cursor: pointer;
+            scale: 1.1;
+        }
+
+    </style>
+</head>
+<body>
+    <section id="but">
+        Wybierz Tryb
+        <button onclick="zmiana_trybu(1)">3 w rzędzie</button>
+        <button onclick="zmiana_trybu(2)">Wszystkie</button>
+    </section>
+    <main id="main">
+        <div id="1" onclick="zaznaczenie(1)"></div>
+        <div id="2" onclick="zaznaczenie(2)"></div>
+        <div id="3" onclick="zaznaczenie(3)"></div>
+
+        <div id="4" onclick="zaznaczenie(4)"></div>
+        <div id="5" onclick="zaznaczenie(5)"></div>
+        <div id="6" onclick="zaznaczenie(6)"></div>
+
+        <div id="7" onclick="zaznaczenie(7)"></div>
+        <div id="8" onclick="zaznaczenie(8)"></div>
+        <div id="9" onclick="zaznaczenie(9)"></div>
+        <nav id="timer">
+    </main>
+
+    </nav>
+</body>
+    <script>
+        let data
+        let s
+        let m
+        let h
+        let gra=true
+        let tablica =[]
+        let tryb=0;
+        let pytanie=[
+        'Przyjebka o nic<img src="1.png" alt="">',
+        'Spóźnienie<img src="2.png" alt="">',
+        'Wysłanie do pedagoga<img src="3.png" alt="">',
+        'Grożenie uwagą<img src="4.png" alt="">',
+        'Przypierdolka o plecaki<img src="5.png" alt="">',
+        'Korzystanie z telefonu<img src="6.png" alt="">',
+        'Uspokajanie komborniaków<img src="7.png" alt="">',
+        'Porównywanie do zwierząt<img src="8.png" alt="">',
+        'Jebnięcie o stół<img src="9.png" alt="">',
+        'Nieadekwatny strój<img src="10.png" alt="">',
+        'Coś nie działą guzkowi<img src="11.png" alt="">',
+        'Zakole<img src="12.png" alt="">',
+        'Wpisanie uwagi<img src="13.png" alt="">',
+        'Bezsensowny kod<img src="14.png" alt="">',
+        ]
+        function start()
+        {
+            for(let i=0;i<9;i++)
+            {
+                let temp =Math.floor(Math.random() * pytanie.length);
+                document.getElementById(i+1).innerHTML= pytanie[temp]
+                pytanie.splice(temp,1)
+            }
+        }
+        start()
+        function zaznaczenie(x)
+        {
+            document.getElementById(x).style.backgroundColor ="red"
+            tablica.push(x)
+            console.log(tablica)
+            if(tryb==1)
+            {
+                if(tablica.includes(1)&&tablica.includes(2)&&tablica.includes(3))
+                {
+                    gra=false
+                }
+                if(tablica.includes(4)&&tablica.includes(5)&&tablica.includes(6))
+                {
+                    gra=false
+                }
+                if(tablica.includes(7)&&tablica.includes(8)&&tablica.includes(9))
+                {
+                    gra=false
+                }
+                if(tablica.includes(1)&&tablica.includes(5)&&tablica.includes(9))
+                {
+                    gra=false
+                }
+                if(tablica.includes(7)&&tablica.includes(5)&&tablica.includes(3))
+                {
+                    gra=false
+                }
+            }
+            else{
+                if(tablica.includes(1)&&tablica.includes(2)&&tablica.includes(3)&&tablica.includes(4)&&tablica.includes(5)&&tablica.includes(6)&&tablica.includes(7)&&tablica.includes(8)&&tablica.includes(9))
+                {
+                    gra=false
+                }
+            }
+        }
+        function timer()
+        {
+            let nowa_data = new Date();
+            let nowa_s = nowa_data.getSeconds();
+            let nowa_m = nowa_data.getMinutes();
+            let nowa_h = nowa_data.getHours();
+            if(nowa_s>=s) nowa_s = nowa_s - s;
+            else s=0;
+            if(nowa_m>=m)   nowa_m = nowa_m - m;
+            else m=0;
+            if(nowa_h>=h) nowa_h = nowa_h - h;
+            else h=0;
+            if (nowa_s < 10) nowa_s = "0" + nowa_s;
+            if (nowa_m < 10) nowa_m = "0" + nowa_m;
+            if (nowa_h < 10) nowa_h = "0" + nowa_h;
+            document.getElementById("timer").innerHTML=nowa_h+":"+nowa_m+":"+nowa_s;
+
+            if (gra) {const myTimeout = setTimeout(() => timer(), 1000);}
+        }
+        //timer(s, m, h)
+
+        function zmiana_trybu(x)
+            {
+                tryb=x
+                document.getElementById("main").style.display="flex";
+                document.getElementById("but").style.display="none";
+                data = new Date()
+                s=data.getSeconds()
+                m=data.getMinutes()
+                h=data.getHours()
+                timer()
+            }
+    </script>
+</html>
